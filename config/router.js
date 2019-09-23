@@ -5,13 +5,16 @@ const app = require('./app');
 const authRouter = require('../routers/Auth');
 const farmerRouter = require('../routers/Farmer');
 const adminRouter = require('../routers/Admin');
+const productRouter = require('../routers/Product');
 
 const userPrefix = 'user';
 const farmerPrefix = 'farmer';
 const adminPrefix = 'admin';
+const productPrefix = 'product';
 
 //routers users
 // app.use('/users', userRouter);
 app.use(`/${userPrefix}`, authRouter);
 app.use(`/${farmerPrefix}`, farmerRouter);
 app.use(`/${adminPrefix}`, adminRouter);
+app.use(`/${productPrefix}`, productRouter);
