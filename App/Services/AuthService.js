@@ -152,6 +152,10 @@ class AuthService {
             }
         }
     }
+
+    isLoggedIn() {
+        return headers.get('Authorization') === 'Bearer' + data;
+    }
 }
 
 module.exports = new AuthService();

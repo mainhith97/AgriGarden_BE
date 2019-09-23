@@ -1,5 +1,5 @@
 const AuthService = require('../../Services/AuthService');
-
+const AuthMiddeware = require('../../Middlewares/AuthMiddleware');
 const bcrypt = require('bcrypt');
 
 const jwt = require('json-web-token');
@@ -7,6 +7,7 @@ const jwt = require('json-web-token');
 class AuthController {
     constructor(){
         this.authService = AuthService;
+        this.authMiddeware = AuthMiddeware;
     }
 
     //register controller
@@ -30,6 +31,11 @@ class AuthController {
     async getUserInfo({ req, res, next}){
         const result = await this.userModel.query().where('token', token).first();
         console.log(result);
+        return res.json(result);
+    }
+
+    async isLoggedIn(){
+        const result = await this.authService.isLoggedIn();
         return res.json(result);
     }
 
