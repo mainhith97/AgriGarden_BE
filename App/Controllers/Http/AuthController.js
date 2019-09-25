@@ -3,6 +3,7 @@ const AuthMiddeware = require('../../Middlewares/AuthMiddleware');
 const bcrypt = require('bcrypt');
 
 const jwt = require('json-web-token');
+var decodedToken ='';
 
 class AuthController {
     constructor(){
@@ -28,16 +29,32 @@ class AuthController {
         return res.json(result);
     }
 
-    async getUserInfo({ req, res, next}){
-        const result = await this.userModel.query().where('token', token).first();
-        console.log(result);
-        return res.json(result);
+    getUserInfo({ req, res, next}){
+        // const result = await this.userModel.query().where('token', token).first();
+        // console.log(result);
+        // return res.json(result);
+
+        return res.status(200).json(decodedToken.username);
     }
 
-    async isLoggedIn(){
-        const result = await this.authService.isLoggedIn();
-        return res.json(result);
-    }
+    // verifyToken(req, res, next){
+    //     let token = req.query.token;
+
+    //     jwt.verify(token, Env.APP_KEY, (err, tokendata) => {
+    //         if(err){
+    //             return res.status(400).json({message:' Unauthorized request '});
+    //         }
+    //         if(tokendata){
+    //             decodedToken = tokendata;
+    //             next();
+    //         }
+    //     })
+    // }
+    
+    // async isLoggedIn(){
+    //     const result = await this.authService.isLoggedIn();
+    //     return res.json(result);
+    // }
 
     //logout
     async logout({ req, res, next }){

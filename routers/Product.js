@@ -12,6 +12,8 @@ router.get('/get-list-product1', (req, res, next)=>{
     ProductController.getListProduct1({req, res, next});
 });
 
-
+router.get('/get-product-by-id', (req, res, next)=>{
+    ProductController.getProductbyId({req, res, next});
+});
 
 module.exports = router;

@@ -69,7 +69,7 @@ class AuthService {
         if(userInserted){
             console.log('da add vao db');
         }else{
-            console.log('deo add dc');
+            console.log('ko add dc');
         }
         
         
@@ -153,9 +153,9 @@ class AuthService {
         }
     }
 
-    isLoggedIn() {
-        return headers.get('Authorization') === 'Bearer' + data;
-    }
+    // isLoggedIn() {
+    //     return headers.get('Authorization') === 'Bearer' + data;
+    // }
 }
 
 module.exports = new AuthService();

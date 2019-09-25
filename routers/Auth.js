@@ -6,6 +6,7 @@ const AuthenMiddleware = require('../App/Middlewares/AuthMiddleware');
 const { validationResult } = require('express-validator');
 
 const registerValidator = require('../App/Validators/registerValidator');
+const verifyToken = require('../App/Validators/verifyToken');
 
 // router register
 router.post('/register', registerValidator, (req, res, next)=>{
@@ -28,9 +29,9 @@ router.use((req, res, next)=>{
 //     AuthenController.getProfile({req, res, next});
 // });
 
-// router.get('/info', (req, res, next) => {
-//     AuthController.getUserInfo({req, res, next});
-// })
+router.get('/info', verifyToken(), (req, res, next) => {
+    AuthController.getUserInfo({req, res, next});
+})
 
 router.post('/logout', (req, res, next)=>{
     AuthController.logout({req, res, next});

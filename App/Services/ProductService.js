@@ -25,6 +25,24 @@ class ProductService {
             }
         }
     }
+
+    async getProductbyId(_id){
+        try {
+            const getProductbyId = await this.productModel.query().findById(_id);
+            // console.log(getListProduct.name);
+            return {
+                success: true,
+                result: getProductbyId
+            };
+            
+        } catch (error) {
+            console.log(error)
+            return {
+                message: 'fail',
+                result: null
+            }
+        }
+    }
 }
 
 module.exports = new ProductService();

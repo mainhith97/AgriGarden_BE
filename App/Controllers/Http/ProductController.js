@@ -7,12 +7,15 @@ class ProductController {
         this.authMiddeware = AuthMiddeware;
     }
 
-    //get profile
     async getListProduct1({req, res, next}){
         const result = await this.productService.getListProduct1();
         return res.json(result);
     }
-
+    
+    async getProductbyId({req, res, next}){
+        const result = await this.productService.getProductbyId(_id);
+        return res.json(result);
+    }
 }
 
 module.exports = new ProductController();
