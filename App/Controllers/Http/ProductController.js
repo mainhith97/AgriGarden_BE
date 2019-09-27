@@ -13,7 +13,7 @@ class ProductController {
     }
     
     async getProductbyId({req, res, next}){
-        const result = await this.productService.getProductbyId(_id);
+        const result = await this.productService.getProductbyId(req.params.id);
         return res.json(result);
     }
 }

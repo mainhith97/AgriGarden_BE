@@ -25,13 +25,9 @@ router.use((req, res, next)=>{
     AuthenMiddleware.auth({req, res, next});
 });
 
-// router.get('/getProfile', (req, res, next) => {
-//     AuthenController.getProfile({req, res, next});
-// });
-
-router.get('/info', verifyToken(), (req, res, next) => {
-    AuthController.getUserInfo({req, res, next});
-})
+router.get('/getProfile', (req, res, next) => {
+    AuthController.getProfile({req, res, next});
+});
 
 router.post('/logout', (req, res, next)=>{
     AuthController.logout({req, res, next});

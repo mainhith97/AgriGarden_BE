@@ -1,5 +1,7 @@
 const AuthService = require('../../Services/AuthService');
 const AuthMiddeware = require('../../Middlewares/AuthMiddleware');
+const UserModel = require('../../Models/UserModel');
+const TokenModel = require('../../Models/TokenModel');
 const bcrypt = require('bcrypt');
 
 const jwt = require('json-web-token');
@@ -9,6 +11,9 @@ class AuthController {
     constructor(){
         this.authService = AuthService;
         this.authMiddeware = AuthMiddeware;
+
+        this.userModel = UserModel;
+        this.tokenModel = TokenModel;
     }
 
     //register controller
@@ -30,31 +35,9 @@ class AuthController {
     }
 
     getUserInfo({ req, res, next}){
-        // const result = await this.userModel.query().where('token', token).first();
-        // console.log(result);
-        // return res.json(result);
 
         return res.status(200).json(decodedToken.username);
     }
-
-    // verifyToken(req, res, next){
-    //     let token = req.query.token;
-
-    //     jwt.verify(token, Env.APP_KEY, (err, tokendata) => {
-    //         if(err){
-    //             return res.status(400).json({message:' Unauthorized request '});
-    //         }
-    //         if(tokendata){
-    //             decodedToken = tokendata;
-    //             next();
-    //         }
-    //     })
-    // }
-    
-    // async isLoggedIn(){
-    //     const result = await this.authService.isLoggedIn();
-    //     return res.json(result);
-    // }
 
     //logout
     async logout({ req, res, next }){
@@ -85,18 +68,18 @@ class AuthController {
         //step1 get token
         const { headers } = req;
         const token = headers.authorization;
-        // console.log(token);
-
+        console.log(token);
         //step2 lay ID cua User dang login
         const get_ID_User = await this.tokenModel.query().where('token', token).first();
-        // console.log(get_ID_User.userID);
+        console.log(get_ID_User.userID);
         //step3 get profile of user
         const getProfile = await this.userModel.query().where('id', get_ID_User.userID).first();
-        // console.log(getProfile.username);
+        console.log(getProfile.username);
         //step4 response
         res.json({
+            success: true,
             message: 'get_Profile_success',
-            data: getProfile
+            result: getProfile
         });
     }
 

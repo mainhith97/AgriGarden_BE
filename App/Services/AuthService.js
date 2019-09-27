@@ -30,7 +30,7 @@ class AuthService {
         if( !body.username || !body.password ){
             return res.json({
                 message: 'username_or_password_is_required',
-                data: null
+                result: null
             })
         }
         //step3
@@ -42,7 +42,7 @@ class AuthService {
         if(user){
             return res.json({
                 message: 'user_is_exist',
-                data: null
+                result: null
             });
         }
 
@@ -89,13 +89,13 @@ class AuthService {
         return {
             success: true,
             message: 'register_success',
-            data: token.value
+            result: token.value
         };
         } catch (error) {
             console.log(error)
             return {
                 message: 'register_fail',
-                data: null
+                result: null
             }
         }
     }
@@ -105,7 +105,7 @@ class AuthService {
             if( !body.username || !body.password ){
                 return {
                     message: 'username_or_password_is_require',
-                    data: null
+                    result: null
                 }
             }
             //get user_need_to_check
@@ -113,7 +113,7 @@ class AuthService {
             if(!getUser){
                 return {
                     message: 'username_not_existed',
-                     data: null
+                     result: null
                 }
             };
             //comapre password
@@ -125,7 +125,7 @@ class AuthService {
             if(!check_password){
                 return {
                     message: 'wrong_password',
-                    data: null
+                    result: null
                 }
             }
     
@@ -141,21 +141,17 @@ class AuthService {
             return {
                 success: true,
                 message: 'login_success',
-                data: token.value,
+                result: token.value,
                 role: getUser.role
             };
         } catch (error) {
             console.log(error)
             return {
                 message: 'login_fail',
-                data: null
+                result: null
             }
         }
     }
-
-    // isLoggedIn() {
-    //     return headers.get('Authorization') === 'Bearer' + data;
-    // }
 }
 
 module.exports = new AuthService();

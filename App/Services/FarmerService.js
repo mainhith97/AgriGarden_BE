@@ -30,7 +30,7 @@ class FarmerService {
         if( !body.username || !body.password ){
             return res.json({
                 message: 'username_or_password_is_required',
-                data: null
+                result: null
             })
         }
         //step3
@@ -42,7 +42,7 @@ class FarmerService {
         if(user){
             return res.json({
                 message: 'user_is_exist',
-                data: null
+                result: null
             });
         }
 
@@ -89,13 +89,13 @@ class FarmerService {
         return {
             success: true,
             message: 'register_success',
-            data: token.value
+            result: token.value
         };
         } catch (error) {
             console.log(error)
             return {
                 message: 'register_fail',
-                data: null
+                result: null
             }
         }
     }

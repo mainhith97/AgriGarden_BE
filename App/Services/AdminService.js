@@ -30,7 +30,7 @@ class AdminService {
             if( !body.username || !body.password ){
                 return {
                     message: 'username_or_password_is_require',
-                    data: null
+                    result: null
                 }
             }
             console.log(body);
@@ -39,7 +39,7 @@ class AdminService {
             if(!getAdmin){
                 return {
                     message: 'username_not_existed',
-                     data: null
+                     result: null
                 }
             };
             //comapre password
@@ -51,7 +51,7 @@ class AdminService {
             if(!check_admin){
                 return {
                     message: 'wrong_password',
-                    data: null
+                    result: null
                 }
             }
     
@@ -67,12 +67,12 @@ class AdminService {
             return {
                 success: true,
                 message: 'login_success',
-                data: token.value
+                result: token.value
             };
         } catch (error) {
             return {
                 message: 'login_fail',
-                data: null
+                result: null
             }
         }
     }
