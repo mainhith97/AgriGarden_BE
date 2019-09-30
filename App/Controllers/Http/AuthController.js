@@ -63,6 +63,23 @@ class AuthController {
 
     }
 
+    isLoggedIn({req, res, next}){
+        const { headers } = req;
+        const token = headers.authorization;
+        if(token){
+            res.json( {
+                success: true,
+                message: 'LoggedIn',
+                result: true
+            })
+        }
+        else res.json( {
+            success: true,
+            message: 'NotLoggedIn',
+            result: false
+        })
+    }
+
     //get profile
     async getProfile({req, res, next}){
         //step1 get token

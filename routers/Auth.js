@@ -19,7 +19,9 @@ router.post('/register', registerValidator, (req, res, next)=>{
 router.post('/login', (req, res, next)=>{
     AuthController.login({req, res, next});
 });
-
+router.get('/isLoggedIn', (req, res, next) => {
+    AuthController.isLoggedIn({req, res, next});
+});
 //required authen
 router.use((req, res, next)=>{
     AuthenMiddleware.auth({req, res, next});

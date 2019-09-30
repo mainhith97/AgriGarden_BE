@@ -24,7 +24,8 @@
     "knex": "^0.19.4",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.2",
-    "objection": "^1.6.9",
+    "objection": "^1.6.11",
+    "objection-find": "^1.6.5",
     "session": "^0.1.0"
   },
   "devDependencies": {
