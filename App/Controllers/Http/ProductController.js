@@ -49,6 +49,14 @@ class ProductController {
         const result = await this.productService.search(body);
         return res.json(result);
     }
+    async getSearchResult({req, res, next}){
+        const result = await this.productService.getSearchResult(req.query.keyword);
+        return res.json(result);
+    }
+    async getListNewest({req, res, next}){
+        const result = await this.productService.getListNewest();
+        return res.json(result);
+    }
 }
 
 module.exports = new ProductController();

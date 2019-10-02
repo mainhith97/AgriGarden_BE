@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 global.Env = process.env;
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 const http = require('http').Server(app);

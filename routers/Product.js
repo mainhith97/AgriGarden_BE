@@ -34,7 +34,11 @@ router.get('/product/:id', (req, res, next)=>{
 router.post('/search', (req, res, next)=>{
     ProductController.search({req, res, next});
 });
-// router.post('/search/:name', (req, res, next)=>{
-//     ProductController.search({req, res, next});
-// });
+router.get('/search', (req, res, next)=>{
+    ProductController.getSearchResult({req, res, next});
+});
+router.get('/get-list-newest', (req, res, next)=>{
+    ProductController.getListNewest({req, res, next});
+});
+
 module.exports = router;
