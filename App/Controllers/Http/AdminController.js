@@ -36,6 +36,14 @@ class AdminController {
         });
 
     }
+    async getListUser({ req, res, next }){
+        const result = await this.adminService.getListUser();
+        return res.json(result);
+    }
+    async getListProduct({ req, res, next }){
+        const result = await this.adminService.getListProduct();
+        return res.json(result);
+    }
 
 }
 

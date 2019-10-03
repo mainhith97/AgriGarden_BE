@@ -1,6 +1,5 @@
 const UserModel = require('../Models/UserModel');
 const ProductModel = require('../Models/ProductsModel');
-let findQuery = require('objection-find');
 
 class ProductService {
     constructor() {
@@ -219,7 +218,6 @@ class ProductService {
     async getListNewest(req, res, next) {
         try {
             const getListNewest = await this.productModel.query().limit(8).orderBy('created_at','DESC');
-            // console.log(getListProduct.name);
             return {
                 success: true,
                 result: getListNewest

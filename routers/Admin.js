@@ -13,7 +13,12 @@ router.use((req, res, next)=>{
     AuthenMiddleware.auth({req, res, next});
 });
 
-
+router.get('/get-list-user', (req, res, next)=>{
+    AdminController.getListUser({req, res, next});
+});
+router.get('/get-list-product', (req, res, next)=>{
+    AdminController.getListProduct({req, res, next});
+});
 router.post('/logout', (req, res, next)=>{
     AdminController.logout({req, res, next});
 });

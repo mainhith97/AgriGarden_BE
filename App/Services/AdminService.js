@@ -1,5 +1,8 @@
 const AdminModel = require('../Models/AdminModel');
 const TokenModel = require('../Models/TokenModel');
+const UserModel = require('../Models/UserModel');
+const ProductModel = require('../Models/ProductsModel');
+const TypeModel = require('../Models/TypeModel');
 
 const bcrypt = require('bcrypt');
 
@@ -9,6 +12,9 @@ class AdminService {
     constructor(){
         this.adminModel = AdminModel;
         this.tokenModel = TokenModel;
+        this.userModel = UserModel;
+        this.productModel = ProductModel;
+        this.typeModel = TypeModel;
     }
     //hash password
     hash_password(password){
@@ -72,6 +78,42 @@ class AdminService {
         } catch (error) {
             return {
                 message: 'login_fail',
+                result: null
+            }
+        }
+    }
+
+    // lấy danh sách user
+    async getListUser(req, res, next) {
+        try {
+            const getListUser = await this.userModel.query();
+            return {
+                success: true,
+                result: getListUser
+            };
+
+        } catch (error) {
+            console.log(error)
+            return {
+                message: 'fail',
+                result: null
+            }
+        }
+    }
+
+    //lấy danh sách sản phẩm
+    async getListProduct() {
+        try {
+            const getListProduct = await this.productModel.query().eager('[product_type,user]');
+            return {
+                success: true,
+                result: getListProduct
+            };
+
+        } catch (error) {
+            console.log(error)
+            return {
+                message: 'fail',
                 result: null
             }
         }
